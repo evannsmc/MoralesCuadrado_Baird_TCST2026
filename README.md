@@ -9,12 +9,12 @@ Video footage for certain flights may be seen [here](https://youtu.be/H0mwDMPMdx
 # Environment Setup
 1. Users of this code must use the `/src/` folder here in a ROS2 workspace and build
 2. Users may also use the `environment.yml` file to set up a conda environment with the necessary packages to run the code below
-3. **Docker (in development):** A Docker-based workspace is available at [ws_px4_work](https://github.com/evannsm/ws_px4_work). Note that this is still under active development, but it aims to simplify the full PX4/ROS2 environment setup
+3. **Docker (in development):** A Docker-based workspace is available at [ws_px4_work](https://github.com/evannsmc/ws_px4_work). Note that this is still under active development, but it aims to simplify the full PX4/ROS2 environment setup
 
 # Cloning This Repository
 This repository uses git submodules for the quadrotor packages. Clone with:
 ```bash
-git clone --recurse-submodules git@github.com:evannsm/MoralesCuadrado_Baird_TCST2025.git
+git clone --recurse-submodules git@github.com:evannsmc/MoralesCuadrado_Baird_TCST2025.git
 ```
 If you already cloned without `--recurse-submodules`, initialize the submodules with:
 ```bash
@@ -25,17 +25,17 @@ git submodule update --init --recursive
 If you are using a motion capture system for hardware flights, you may need the following packages cloned into your ROS2 workspace `src/` directory:
 ```bash
 # Vicon
-git clone git@github.com:evannsm/vicon4px4.git
+git clone git@github.com:evannsmc/vicon4px4.git
 
 # OptiTrack
-git clone git@github.com:evannsm/optitrack4px4.git
+git clone git@github.com:evannsmc/optitrack4px4.git
 
 # PX4 messages (minimal branch)
-git clone -b v1.16_minimal_msgs git@github.com:evannsm/px4_msgs.git
+git clone -b v1.16_minimal_msgs git@github.com:evannsmc/px4_msgs.git
 
 # Mocap messages and relay nodes
-git clone git@github.com:evannsm/mocap_msgs.git
-git clone git@github.com:evannsm/mocap_px4_relays.git
+git clone git@github.com:evannsmc/mocap_msgs.git
+git clone git@github.com:evannsmc/mocap_px4_relays.git
 ```
 Then build from the workspace root:
 ```bash
@@ -48,8 +48,8 @@ colcon build --symlink-install
 # Quadrotor Code Instructions
 
 The quadrotor packages (`quad_newton_raphson_flow` and `quad_mpc`) are included as git submodules pointing to their standalone repositories:
-- **NR Flow**: [newton_raphson_px4](https://github.com/evannsm/newton_raphson_px4)
-- **NMPC**: [nmpc_acados_px4](https://github.com/evannsm/nmpc_acados_px4)
+- **NR Flow**: [newton_raphson_px4](https://github.com/evannsmc/newton_raphson_px4)
+- **NMPC**: [nmpc_acados_px4](https://github.com/evannsmc/nmpc_acados_px4)
 
 ## Preliminary
 1. Follow the instructions ([here](https://docs.px4.io/main/en/ros/ros2_comm.html)) to set up the PX4 Autopilot Stack, ROS2, Micro XRCE-DDS Agent & Client, and build a ROS2 workspace with the necessary px4 communication repos

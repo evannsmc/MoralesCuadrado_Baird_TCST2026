@@ -1,6 +1,6 @@
 [submodule "src/quad_newton_raphson_flow"]
 	path = src/quad_newton_raphson_flow
-	url = git@github.com:evannsm/newton_raphson_px4.git
+	url = git@github.com:evannsmc/newton_raphson_px4.git
 [submodule "src/quad_mpc"]
 	path = src/quad_mpc
-	url = git@github.com:evannsm/nmpc_acados_px4.git
+	url = git@github.com:evannsmc/nmpc_acados_px4.git
