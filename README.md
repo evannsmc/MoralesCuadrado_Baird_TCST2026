@@ -57,7 +57,7 @@ This repo is a single ROS 2 workspace `src/` that showcases three controller fam
 - **Quadrotor — NMPC** ([nmpc_acados_px4](https://github.com/evannsmc/nmpc_acados_px4)): acados-based nonlinear MPC, used as the comparison baseline.
 - **Blimp — MPC / FBL / NR Flow** (`blimp_mpc_fbl_nr`): the three blimp controllers (model-predictive, feedback-linearization-via-CBF, and Newton-Raphson Flow) for sim and hardware.
 
-The two quadrotor packages are included as **git submodules** that point to their standalone repositories, so they stay in sync with their own development; the blimp package lives directly in this repo.
+The two quadrotor packages **and their shared dependencies** (`quad_platforms`, `quad_trajectories`, `ROS2Logger`, and `px4_msgs`) are included as **git submodules** that point to their standalone repositories, so they stay in sync with their own development; the blimp package lives directly in this repo. A recursive clone therefore yields a workspace that builds the quadrotor stack with no extra cloning.
 
 ## Repository Structure
 
@@ -67,8 +67,14 @@ MoralesCuadrado_Baird_TCST2026/
 └── src/
     ├── blimp_mpc_fbl_nr/               # blimp MPC / FBL / NR Flow (in-tree)
     ├── quad_mpc/                       # submodule -> nmpc_acados_px4   (run as `nmpc_acados_px4`)
-    └── quad_newton_raphson_flow/       # submodule -> newton_raphson_px4 (run as `newton_raphson_px4`)
+    ├── quad_newton_raphson_flow/       # submodule -> newton_raphson_px4 (run as `newton_raphson_px4`)
+    ├── quad_platforms/                 # submodule -> quad_platforms     (shared quad dependency)
+    ├── quad_trajectories/              # submodule -> quad_trajectories  (shared quad dependency)
+    ├── ROS2Logger/                     # submodule -> ROS2Logger         (shared dep, imported as `ros2_logger`)
+    └── px4_msgs/                       # submodule -> px4_msgs @ v1.16_minimal_msgs (PX4 v1.16 messages)
 ```
+
+Everything the quadrotor controllers need to build — the two controllers **and** their shared dependencies (`quad_platforms`, `quad_trajectories`, `ROS2Logger`) plus `px4_msgs` — is bundled as submodules, so a single recursive clone produces a buildable workspace (no manual sibling cloning required).
 
 > Note: the submodule **directory** names (`quad_mpc`, `quad_newton_raphson_flow`) differ from the **ROS 2 package** names you `ros2 run` (`nmpc_acados_px4`, `newton_raphson_px4`). colcon resolves packages by their `package.xml` name, not the folder name, so always run them by package name.
 
@@ -96,7 +102,9 @@ Follow the [PX4 ROS 2 user guide](https://docs.px4.io/main/en/ros/ros2_comm.html
 
 ### 2. px4_msgs (PX4 v1.16)
 
-These controllers target **PX4 v1.16** and require the matching minimal message set. Clone the pinned fork into your workspace `src/`:
+These controllers target **PX4 v1.16** and require the matching minimal message set. `px4_msgs` is **bundled as a submodule** pinned to the `v1.16_minimal_msgs` branch, so a recursive clone already provides it — no manual step needed.
+
+If you instead build in a separate workspace, clone it yourself:
 
 ```bash
 git clone -b v1.16_minimal_msgs git@github.com:evannsmc/px4_msgs.git

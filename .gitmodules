@@ -4,3 +4,16 @@
 [submodule "src/quad_mpc"]
 	path = src/quad_mpc
 	url = git@github.com:evannsmc/nmpc_acados_px4.git
+[submodule "src/quad_platforms"]
+	path = src/quad_platforms
+	url = git@github.com:evannsmc/quad_platforms.git
+[submodule "src/quad_trajectories"]
+	path = src/quad_trajectories
+	url = git@github.com:evannsmc/quad_trajectories.git
+[submodule "src/ROS2Logger"]
+	path = src/ROS2Logger
+	url = git@github.com:evannsmc/ROS2Logger.git
+[submodule "src/px4_msgs"]
+	path = src/px4_msgs
+	url = git@github.com:evannsmc/px4_msgs.git
+	branch = v1.16_minimal_msgs
